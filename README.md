@@ -1,51 +1,56 @@
-**CKW Energy Consumption Data - Customer Segmentation Tool**
+CKW Energy Consumption Data - Customer Segmentation Tool
 
-A Python tool for customer segmentation using household energy consumption data from CKW. This tool is specifically designed to analyze anonymized, monthly household energy data and generate meaningful consumption patterns and clusters.
+A Python tool for customer segmentation using household energy consumption data from CKW, aimed at generating insights from anonymized, monthly household energy data through meaningful consumption patterns and clustering.
+Environment Setup
 
-To create the environment, run:
-```bash
+To set up the environment, run:
+
+bash
+
 conda env create -f environment.yml
 
-Data source: CKW Open Data Portal
-Project Structure
-Core Analysis Files
+Data Source
 
-    CKW.ipynb: Extracts seasonal profiles from monthly anonymized data provided by CKW. These profiles are used as the foundation for further analyses.
+Data is sourced from the CKW Open Data Portal, providing anonymized household consumption data for segmentation and analysis.
+Project Structure
+Core Analysis File
+
+    CKW.ipynb: Extracts seasonal energy profiles from monthly anonymized data provided by CKW, forming the basis for all subsequent analyses.
 
 Preprocessing Files
 
-    Day_profiles_preprocessing.ipynb: Creates representative day profiles with 96 data points (15-minute intervals) based on the seasonal profiles.
+    Day_profiles_preprocessing.ipynb: Creates daily profiles with 96 data points (15-minute intervals) from the seasonal profiles, representing typical daily usage patterns.
 
-    Day_averaged_preprocessing.ipynb: Generates a day-averaged energy consumption profile for the entire year, averaging the energy consumed per day.
+    Day_averaged_preprocessing.ipynb: Generates a yearly day-averaged energy consumption profile, calculating the average energy used per day.
 
-    Weekdays_weekend_preprocessing.ipynb: Creates weekday and weekend profiles from the seasonal profiles. Adjust the holiday dates in this file as needed.
+    Weekdays_weekend_preprocessing.ipynb: Separates profiles into weekday and weekend patterns based on seasonal profiles, with customizable holiday dates.
 
 Analysis and Clustering Files
 
-    Analysis.ipynb: Performs outlier analysis, calculates the total energy consumption per household, and plots peak vs. total consumption distributions.
+    Analysis.ipynb: Conducts outlier analysis, calculates total energy consumption per household, and plots peak vs. total consumption.
 
-    Seasonal_clustering.ipynb: Applies K-means clustering to seasonal profiles generated in CKW.ipynb. Clusters are visualized to show patterns across the seasons.
+    Seasonal_clustering.ipynb: Uses K-means clustering to identify seasonal consumption patterns from the profiles generated in CKW.ipynb. Cluster patterns are visualized to illustrate seasonal trends.
 
-    Day-averaged-clustering.ipynb: Clusters day-averaged profiles using K-means. This notebook also examines the effect of temperature on energy consumption within each cluster using a Generalized Additive Model (GAM).
+    Day-averaged-clustering.ipynb: Clusters the day-averaged profiles from Day_averaged_preprocessing.ipynb. Analyzes temperature impacts on consumption within clusters using a Generalized Additive Model (GAM).
 
-    Day_clustering.ipynb: Uses K-means to cluster the representative day profiles from Day_profiles_preprocessing.ipynb. Seasonal variations in clusters are visualized using Sankey plots. This file also demonstrates cluster-specific Time-of-Use price scheme design.
+    Day_clustering.ipynb: Clusters daily profiles (from Day_profiles_preprocessing.ipynb) using K-means, with seasonal variations visualized through Sankey plots. Demonstrates Time-of-Use price scheme design for each cluster.
 
-    Weekday_weekend_clustering.ipynb: Clusters weekday and weekend profiles separately using K-means.
+    Weekday_weekend_clustering.ipynb: Applies K-means clustering to separate weekday and weekend profiles.
 
 Clustering Methods and Validation Metrics
 
-Each clustering notebook includes the following validation metrics to assess clustering performance:
+Each clustering notebook includes key metrics to assess cluster quality:
 
-    Silhouette Score
-    Davies-Bouldin Index
-    Calinski-Harabasz Score
+    Silhouette Score: Measures cohesion within clusters.
+    Davies-Bouldin Index: Evaluates average similarity between clusters.
+    Calinski-Harabasz Score: Assesses cluster separation and compactness.
 
 Usage Instructions
 
-    Data Preparation: Use CKW.ipynb to extract and format seasonal profiles from the CKW dataset.
-    Preprocessing: Run the preprocessing notebooks as needed based on the analysis type.
-    Analysis and Clustering: Use the appropriate clustering notebook to group and analyze profiles.
-    Visualization and Insights: Each notebook includes visualizations of the clustering results, along with insights derived from the profiles and patterns.
+    Data Extraction: Use CKW.ipynb to extract and format seasonal profiles from the CKW dataset.
+    Data Preprocessing: Run preprocessing notebooks based on the analysis type.
+    Analysis and Clustering: Choose the appropriate clustering notebook for grouping and analyzing profiles.
+    Visualization and Insights: Each notebook contains visualizations and insights, revealing patterns in consumption and exploring potential Time-of-Use pricing schemes.
 
 Additional Notes
 
